@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<TITLE>Project display</TITLE>
+</HEAD>
+
+<SCRIPT LANGUAGE=VBScript>
+<!--
+
+Sub Window_OnLoad()
+  Set objClient = window.Parent.document.Session("Client")
+  ID = window.Parent.document.Session("ProjectID")
+
+  For Each objProject in objClient.Projects
+    if CLng(objProject.ID) = CLng(ID) then
+      exit for
+    end if
+  next
+
+  strTop = _
+    "<a href=getclient.htm>" & _
+    "Client ID: " & objClient.ID & _
+    "</a><P>" & _
+    "Client name: " & objClient.Name & _
+    "<P>" & _
+    "Project ID: " & objProject.ID & _
+    "<P>" & _
+    "Project name: " & objProject.Name & _
+    "<P>"
+  spnTop.InnerHTML = strTop
+
+  strTbl = _
+    "<TABLE border=1 cellPadding=1 cellSpacing=1 width=75%>" & _
+    "<TR bgColor=Orange>" & _
+    "  <TD><STRONG>Task name</STRONG></TD>" & _
+    "  <TD><STRONG>Projected days</STRONG></TD>" & _
+    "  <TD><STRONG>Percent complete</STRONG></TD>" & _
+    "</TR>"
+
+  For Each objTask In objProject.Tasks
+  strTbl = strTbl & _
+    "<TR>" & _
+    "<TD>" & objTask.Name & "</TD>" & _
+    "<TD>" & objTask.ProjectedDays & "</TD>" & _
+    "<TD>" & objTask.PercentComplete & "</TD>" & _
+    "</TR>"
+  Next
+
+  strTbl = strTbl & "</TABLE>"
+  spnTable.innerHTML = strTbl
+End Sub
+
+-->
+</SCRIPT>
+
+<BODY>
+<SPAN id=spnTop></SPAN> 
+<HR><P>
+  <SPAN id=spnTable></SPAN>
+</P><BR>
+</BODY>
+</HTML>

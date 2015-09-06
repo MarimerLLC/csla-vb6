@@ -1,0 +1,74 @@
+VERSION 1.0 CLASS
+BEGIN
+  MultiUse = -1  'True
+  Persistable = 0  'NotPersistable
+  DataBindingBehavior = 0  'vbNone
+  DataSourceBehavior  = 0  'vbNone
+  MTSTransactionMode  = 0  'NotAnMTSObject
+END
+Attribute VB_Name = "TapesPersist"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = False
+Attribute VB_Exposed = True
+Option Explicit
+
+Public Function Fetch(ByVal VideoID As Long) As String
+
+  Dim strSQL As String
+  Dim rsTape As Recordset
+  Dim objBuffer As Buffer
+  Dim objPersist As TapePersist
+  Dim udtProps As TapeProps
+
+  Set objBuffer = New Buffer
+  strSQL = "SELECT TapeID FROM Tape WHERE VideoID=" & VideoID
+  Set rsTape = New Recordset
+  rsTape.Open strSQL, cnVideo
+  Set objPersist = New TapePersist
+
+  With objPersist
+    objBuffer.Initialize Len(udtProps), 20
+
+    Do While Not rsTape.EOF
+      objBuffer.Add .Fetch(rsTape("TapeID"))
+      rsTape.MoveNext
+    Loop
+
+  End With
+
+  Set objPersist = Nothing
+  rsTape.Close
+  Set rsTape = Nothing
+  Fetch = objBuffer.GetState
+
+End Function
+
+Public Function Save(ByVal VideoID As Long, ByVal Buffer As String) As String
+
+  Dim objPersist As TapePersist
+  Dim objBuffer As Buffer
+  Dim objUpdatedTapes As Buffer
+  Dim lngIndex As Long
+  Dim strBuffer As String
+
+  Set objBuffer = New Buffer
+  objBuffer.SetState Buffer
+  Set objUpdatedTapes = New Buffer
+  objUpdatedTapes.Initialize objBuffer.Length, objBuffer.Count
+  Set objPersist = New TapePersist
+
+  For lngIndex = 1 To objBuffer.Count
+    With objPersist
+      strBuffer = .SaveChild(VideoID, objBuffer.Item(lngIndex))
+      If Len(strBuffer) > 0 Then _
+        objUpdatedTapes.Add strBuffer
+    End With
+
+  Next
+
+  Set objPersist = Nothing
+  Save = objUpdatedTapes.GetState
+
+End Function
+

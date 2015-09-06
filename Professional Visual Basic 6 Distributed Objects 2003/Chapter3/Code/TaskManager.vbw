@@ -1,0 +1,5 @@
+StartForm = 0, 0, 0, 0, C, 44, 44, 759, 674, CI
+TUImain = 0, 0, 0, 0, C
+ClientEdit = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+ProjectEdit = 0, 0, 0, 0, C, 22, 22, 737, 652, CI
+TaskEdit = 0, 0, 0, 0, C, 66, 66, 781, 696, CI

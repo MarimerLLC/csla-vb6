@@ -1,0 +1,32 @@
+<HTML>
+
+<HEAD>
+<META Content="VBScript">
+<TITLE>Retrieve client data</TITLE>
+<SCRIPT ID=clientEventHandlers LANGUAGE=VBScript>
+<!--
+
+function LoadClient()
+  Set objSession = window.Parent.document.Session
+
+  objSession.Remove "Client"
+  Set objClient = objSession.CreateObject("TaskObjects.Client","Client")
+
+  objClient.Load CLng(txtID.value)
+  window.Parent.frames.item("frmMain").navigate("getclient.htm")
+end function
+
+//-->
+</SCRIPT>
+
+</HEAD>
+<BODY>
+
+  Client ID:<BR>
+  <INPUT id=txtID><P>
+  <INPUT id=btnLoad name=button1 style="LEFT: 11px; TOP: 77px"
+    type=button value=Load onclick=LoadClient()>
+  <INPUT TYPE=reset VALUE="Cancel" id=reset1 name=reset1> 
+
+</BODY>
+</HTML>

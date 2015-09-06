@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<TITLE>Client display</TITLE>
+</HEAD>
+
+<SCRIPT LANGUAGE=VBScript>
+<!--
+
+Sub Window_OnLoad()
+  Set objClient = window.Parent.document.Session("Client")
+  strTop = _
+    "Client ID: " & objClient.ID & _
+    "<P>" & _
+    "Client name: " & objClient.Name & _
+    "<P>" & _
+    "Client phone: " & objClient.Phone & _
+    "<P>"
+  spnTop.InnerHTML = strTop
+
+  strTbl = "Projects:<BR>" & _
+    "<SELECT NAME='selPrj'>"
+  For Each objProject In objClient.Projects
+    strTbl = strTbl & _
+      "<OPTION VALUE='" & objProject.ID & "'>" & _
+      objProject.Name
+  Next
+  strTbl = strTbl & "</SELECT>"
+  spnTable.innerHTML = strTbl
+End Sub
+
+sub LoadProject()
+  for i=0 to selPrj.length - 1
+    if selPrj.options(i).selected then
+      ID = selPrj.options(i).value
+      exit for
+    end if
+  next
+  Set objSession = window.Parent.document.Session
+  objSession.Remove "ProjectID"
+  objSession.Add ID, "ProjectID"
+  window.Parent.frames.item("frmMain").navigate("getproject.htm")
+end sub
+
+-->
+</SCRIPT>
+
+<BODY>
+<SPAN id=spnTop></SPAN> 
+<HR><P>
+  <SPAN id=spnTable></SPAN><P>
+  <INPUT type=button value='Show detail' onclick=LoadProject()>
+</P>
+</BODY>
+</HTML>

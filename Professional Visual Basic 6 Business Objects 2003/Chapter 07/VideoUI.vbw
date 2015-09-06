@@ -1,0 +1,11 @@
+VideoMain = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+CustomerEdit = 22, 29, 849, 524, , 0, 0, 0, 0, C
+VUImain = 0, 0, 0, 0, C
+VideoEdit = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+TapeEdit = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+CustomerSearch = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+CustomerList = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+VideoSearch = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+VideoList = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+InvoiceEdit = 0, 0, 0, 0, C, 0, 0, 0, 0, C
+InvoiceTapeEdit = 0, 0, 0, 0, C, 0, 0, 0, 0, C
